@@ -2,67 +2,126 @@ package converter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
 import javax.swing.SwingUtilities;
 
 public class Converter {
-	public Converter() {
-		JFrame mainframe = new JFrame("Converter");
-		JTextField inputbox1 = new JTextField(30);
-		JLabel label1 = new JLabel("Temperature in C");
-		JButton button1 = new JButton("Convert");
-//		JLabel label2 = new JLabel("");
-		JTextField inputbox2 = new JTextField(30);
-		JPanel panel1 = new JPanel();
 
-//		JTextField inputbox2 = new JTextField(30);
-//		JLabel label2 = new JLabel("Temperature in C");
-//		GridLayout grid = new GridLayout(2, 2);
-//		inputbox.setColumns(45);
-//		inputbox1.setBounds(SwingConstants.LEFT, SwingConstants.CENTER, 100, 50);
-//		inputbox1.setHorizontalAlignment(SwingConstants.LEFT);
-//		label1.setHorizontalAlignment(SwingConstants.RIGHT);
-//		label1.setVerticalAlignment(SwingConstants.CENTER);
-//		button1.setBounds(SwingConstants.EAST, SwingConstants.LEADING, 200, 50);
+	public Converter() {
+//		Logic lg = new Logic();
+		JComboBox<?> conv_types = new JComboBox<Object>(Logic.getConv_types());
+		JFrame mainframe = new JFrame("Converter");
+//		@SuppressWarnings("unchecked")
+		
+		JLabel unit1 = new JLabel("Unit 1");
+		JTextField inputbox1 = new JTextField(30);
+
+//		JLabel label2 = new JLabel("");
+		JLabel unit2 = new JLabel("Unit 2");
+		JTextField inputbox2 = new JTextField(30);
+		JButton button1 = new JButton("Convert");
+		
+		JPanel panel1 = new JPanel();
+		
+		GroupLayout layout = new GroupLayout(panel1);
+		panel1.setLayout(layout);
+		
+		layout.setAutoCreateContainerGaps(true);
+		layout.setAutoCreateGaps(true);
+		
+		layout.setHorizontalGroup(
+				layout.createSequentialGroup()
+					.addGroup(
+							layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+							.addComponent(unit1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(inputbox1)
+					)
+					.addGroup(
+							layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+							.addComponent(conv_types)
+							.addComponent(button1)
+							
+					)
+					.addGroup(
+							layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+							.addComponent(unit2)
+							.addComponent(inputbox2)
+					)
+				);
+		layout.setVerticalGroup(
+				layout.createSequentialGroup()
+				.addGroup(
+						layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+						.addComponent(unit1)
+						.addComponent(conv_types)
+						.addComponent(unit2)
+
+				)
+				
+				.addGroup(
+						layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+						.addComponent(inputbox1)
+						.addComponent(button1)
+						.addComponent(inputbox2)
+					)
+				
+				);
+		layout.linkSize(SwingConstants.HORIZONTAL, conv_types, button1);
+//		layout.linkSize(SwingConstants.HORIZONTAL, inputbox1, inputbox2);
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String data = inputbox1.getText();
-				float temp, farhen, cel;
-				if(data.length() == 0) {
-					data = inputbox2.getText();
-					temp = Float.parseFloat(data);
-					cel = ((temp - 32)*5)/9;
-					inputbox1.setText(Float.toString(cel));
+				String ans;
+				if(inputbox1.getText().length() == 0) {
+					ans = Logic.process(
+							inputbox2.getText(),
+							(String)conv_types.getSelectedItem(),
+							true
+							);
+					inputbox1.setText(ans);
 					inputbox2.setText("");
 				}
 				else {
-					temp = Float.parseFloat(data);
-					farhen = (9*temp)/5 + 32;
-					inputbox2.setText(Float.toString(farhen));
+					ans = Logic.process(
+							inputbox1.getText(),
+							(String)conv_types.getSelectedItem(),
+							false
+							);
+					inputbox2.setText(ans);
 					inputbox1.setText("");
 				}
-
+				
 			}
 		});
-		panel1.add(label1);
-		panel1.add(inputbox1);
-		panel1.add(button1);
-		panel1.add(inputbox2);
-//		mainframe.add(inputbox1);
-//		mainframe.add(label1);
+		
+		conv_types.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				String type = (String)conv_types.getSelectedItem();
+				String[] temp = type.split(" ", 0);
+				unit1.setText(temp[0]);
+				unit2.setText(temp[2]);
+			}
+		});
+
+		
+
 		mainframe.add(panel1);
-//		mainframe.setLayout(new GridLayout(2,2));
 		mainframe.setSize(400, 400);
-//		mainframe.getContentPane().setBackground(Color.green);
 		mainframe.setVisible(true);
 	}
 	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable(){
