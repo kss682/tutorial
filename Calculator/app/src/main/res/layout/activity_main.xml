@@ -246,7 +246,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:onClick="buttonClick"
+            android:onClick="evaluateClick"
             android:background="#c6010101"
             android:textColor="#FFFFFCFC"
             android:text="=" />

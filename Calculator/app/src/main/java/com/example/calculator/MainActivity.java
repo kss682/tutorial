@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonClick(View view) {
         String button_value;
-
         Button button = (Button) findViewById(view.getId());
         button_value = button.getText().toString();
         System.out.println(button_value);
