@@ -46,6 +46,7 @@ public class DownloadManager {
         try{
             file_output.close();
             urlconnection.disconnect();
+            System.out.println("Pause");
             return true;
         }
         catch(Exception e){
