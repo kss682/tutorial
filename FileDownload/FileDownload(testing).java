@@ -1,4 +1,4 @@
-package download;
+
 
 
 import java.io.*;
@@ -152,7 +152,7 @@ public class FileDownload {
         FileDownload fd = new FileDownload();
         fd.setFileUrl("https://speed.hetzner.de/100MB.bin");
         fd.setDownloadRange(0, 100000000);
-        fd.setFileLocation("A:\\test\test.bin");
+        fd.setFileLocation("/home/srinidhi/Myworks/java_tutorial/FileDownload/");
         fd.startDownload();
         
 	}
