@@ -226,7 +226,7 @@ public class OnlinePortal {
 				break;
 
 			case 7:
-				System.out.printf("Question count: %d", Question.getQuestionCount());
+				System.out.printf("Question count: %d\n", Question.getQuestionCount());
 			}
 
 		}
