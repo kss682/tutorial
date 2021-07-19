@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+        salesforce_db:
+                build: .
+                ports:
+                  - "3306:3306"
+                environment:
+                  - MYSQL_ALLOW_EMPTY_PASSWORD="true"
+                volumes:
+                   - mysql_data:/var/lib/mysql
+
+volumes:
+        mysql_data:      
