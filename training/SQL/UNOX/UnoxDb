@@ -1,0 +1,77 @@
+Entities, Attributes and Keys:
+```
+	- Screen : (id INT Pk, name VARCHAR(50), class_id INT Fk(id) ref Class, seats INT)
+	- Shows  : (id INT Pk, show_name VARCHAR(50), timing VARCHAR(20))
+	- Class  : (id INT Pk, name VARCHAR(50), rate DECIMAL(13,2))
+	- Movie  : (id INT Pk, title VARCHAR(50), genre VARCHAR(20), rating DECIMAL(10, 2), status VARCHAR(20), posterimage VARCHAR(20))
+	- Cast   : (id INT Pk, name VARCHAR(20))
+	- MovieCast : (movie_id INT Fk(id) Ref Movie, cast_id INT Fk(id) Ref Cast, Role VARCHAR(50))
+	- MovieList : (id INT Pk, screen_id INT Fk(id) Ref Screen, show_id INT Fk(id) Ref Show, movie_id INT Fk(id) Ref Movie, seats_left INT) 
+	- Review : (id INT Pk, review VARCHAR(50), author VARCHAR(20), timestamp TIMESTAMP, movie_id INT Fk(id) Ref Movie)
+	- User 	 : (id INT Pk, name VARCHAR(20), address VARCHAR(50))
+	- Booking: (id INT Pk, user_id INT Fk(id) Ref User,  movie_list_id INT Fk(id) Ref MovieList, tickets INT)
+	- Payment: (id INT, booking_id INT Fk(id) Ref Booking, card_number INT, pin INT, cost INT)
+```	
+
+Relationship, Cardinalities and Constraints:
+	- Each instance of ```Screen``` is associated exactly one instance of ```Class```.
+		Screen-1:1-Class 
+		Mandatory participation of Class in Screen
+	- Each instance of ```Class``` is associated with atleast one instance of ```Screen```.
+		Class-1:N-Screen
+		Mandatory partitcipation
+	- Each instance of ```Movie``` is associated with atleast one instance of ```MovieCast```.
+		Movie-1:N-MovieCast
+		Mandatory participation
+	- Each instace of ```Cast``` is associated with 0 or more instance of ```MovieCast```.
+		Cast-0:N-MovieCast
+		Optional participation
+	- Each instance of ```MovieCast``` is associated with exactly one instance of ```Movie```.
+		MovieCast-1:1-Movie
+		Mandatory participation
+	- Each instance of ```MovieCast``` is associated with exactly one instance of ```Cast```.
+		MovieCast-1:1-Cast
+		Mandatory participation
+	- Each instance of ```Movie``` is associated with 0 or more ```Review```.
+		Movie-0:N-Review
+		Optional Participation
+	- Each instance of ```Review``` is associated with exactly one instance of ```Movie```.
+		Review-1:1-Movie
+		Mandatory Participation
+	- Each instance of ```Screen``` is associated with 0 or more ```MovieList```.
+		Screen-0:N-MovieList
+		Optional Participation
+	- Each instance of ```MovieList``` is associated with exactly one instance of ```Screen```.
+		MovieList-1:1-Screen
+		Mandatory Participation
+	- Each instance of ```Show``` is associated with 1 or more ```MovieList```.
+		Show-1:N-MovieList
+		Mandatory Participation
+	- Each instanche of ```MovieList``` is associated with exactly one instance of ```Show```.
+		MovieList-1:1-Show
+		Mandatory Participation
+	- Each instance of ```Movie``` is associated with 0 or more ```MovieList```.
+		Movie-0:N-MovieList
+		Optional Participation
+	- Each instance of ```MovieList``` is associated with exactly one instance of ```Movie```.
+		MovieList-1:1-Movie
+		Mandatory Participation
+	- Each instance of ```MovieList``` is associated with 0 or more instance of ```Booking```.
+		MovieList-0:N-Booking
+		Optional Participation
+	- Each instance of ```Booking``` is associated with exactly one instance of ```MovieList```.
+		Booking-1:1-MovieList
+		Mandatory Participation
+	- Each instance of ```User``` is associated with 0 or more instance of ```Booking```.
+		User-0:N-Booking
+		Optional Participation
+	- Each instance of ```Booking``` is associated with exactly one instance of ```User```.
+		Booking-1:1-User
+		Mandatory Participation
+	- Each instance of ```Booking``` is associated with exactly one instance of ```Payment```.
+		Booking-1:1-Payment
+		Mandatory Participation
+	- Each instance of ```Payment``` is associated with exactly one instance of ```Booking```.
+                Payment-1:1-Booking
+                Mandatory Participation
+ 
