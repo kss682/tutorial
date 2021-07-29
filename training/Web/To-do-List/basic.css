@@ -1,0 +1,46 @@
+input{
+    box-sizing: border-box;
+    height: 34px;
+}
+
+button{
+    border-radius: 50%;
+}
+
+.header{
+    text-align: center;
+}
+
+.add-task{
+    text-align: center;
+}
+
+.sub-heading{
+    margin-top: 40px;
+    text-align: center;
+    background-color:gainsboro;
+    border-radius: 50%;
+    margin-right: 25%;
+    margin-left: 25%;
+}
+
+/* .task-item{ */
+    /* display: inline-block; */
+    /* background-color: lightgray; */
+    /* margin-top: 50%; */
+    /* margin-left: 50%; */
+    /* width: 200px; */
+    /* border-radius: 3px; */
+    /* justify-content: center;
+    align-items: center; */
+/* } */
+
+#task-list{
+    /* display: flex; */
+    /* vertical-align: middle; */
+    text-align: center;
+}
+
+/* .trash{
+    float: right;
+} */

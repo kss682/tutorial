@@ -1,0 +1,25 @@
+.heading{
+    margin-top: 50px;
+    font-size: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    background-color:bisque;
+}
+
+.puppy-container{
+    float: left;
+    background-color: bisque;
+    margin: 1%;
+    padding: 1%;
+}
+
+/* body{
+    background-color: 
+} */
+
+.puppy-image{
+    box-shadow: 4px 4px;
+}
+
+.puppy-info{
+    margin-top: 4%;
+}
