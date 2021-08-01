@@ -1,0 +1,35 @@
+.heading{
+    text-align: center;
+    /*! margin-top: 10px; */
+    background-color: lightsteelblue;
+    padding-top: 30px;
+    padding-bottom: 5px;
+}
+
+.form{
+    position: relative;
+    background-color: lightsteelblue;
+    /*! width: initial; */
+    /* margin-left: ; */
+    /*! display: inline; */
+    margin-top: 15px;
+}
+
+.content{
+    position: relative;
+}
+
+.item{
+    padding-top: 1rem;
+    padding-left: 44%;
+    display: flow-root list-item;
+}
+
+.button{
+    padding-top: 2rem;
+    padding-left: 48%;
+}
+
+input{
+    border-radius: 5px;
+}
