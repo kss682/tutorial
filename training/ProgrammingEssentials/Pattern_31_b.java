@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Pattern1{
+class Pattern_31_b{
 	public static void main(String args[]){
 		int i, j, N;
 		Scanner sc = new Scanner(System.in);

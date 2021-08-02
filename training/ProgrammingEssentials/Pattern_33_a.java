@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Pattern3{
+class Pattern_33_a{
 	/*
 	 * 	Pattern for N: 4
 	 * 	1

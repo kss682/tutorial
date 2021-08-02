@@ -8,22 +8,6 @@ class AnnualSalary{
 	 *  net_annual_salary = gross_annual_salary - tax_rate*(gross_annual_salary - tax_saving_investment)
 	 * 
 	 */
-	private static double getTaxRate(double salary){
-		double tax_rate;
-		if(salary <= 250000){
-			tax_rate = 0;
-		}
-		else if(salary <= 500000){
-			tax_rate = 5;
-		}
-		else if(salary <= 1000000){
-			tax_rate = 20;
-		}
-		else{
-			tax_rate = 30;
-		}
-		return tax_rate;
-	}
 	
 	public static void main(String args[]){
 		String name;
@@ -49,7 +33,20 @@ class AnnualSalary{
 		
 		annual_salary = (basic_salary+spl_allowances)*12;
 		gross_annual_salary = annual_salary + (annual_salary*bonus*1.0)/100;
-		tax_payable = (getTaxRate(gross_annual_salary - tax_saving_investment)*(gross_annual_salary-tax_saving_investment)*1.0)/100; 
+		
+		double tax_payable_salary = gross_annual_salary - tax_saving_investment;
+		if(tax_payable_salary <= 250000){
+			tax_payable = 0;
+		}
+		else if(tax_payable_salary <= 500000){
+			tax_payable = ((tax_payable_salary - 250000)*5)/100;
+		}
+		else if(tax_payable_salary <= 1000000){
+			tax_payable = 12500 + ((tax_payable_salary - 500000)*20)/100;
+		}
+		else{
+			tax_payable = 12500 + 100000 + ((tax_payable_salary - 1000000)*30)/100;
+		}
 		net_annual_salary = gross_annual_salary - tax_payable;
 		System.out.printf("\nAnnual gross salary: %.2f", gross_annual_salary);
 		System.out.printf("\nAnnual net salary: %.2f", net_annual_salary);

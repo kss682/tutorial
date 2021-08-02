@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Pattern2{
+class Pattern_33_d{
 	/*
 	 *  Program to print the pattern :
 	 *  		  *
